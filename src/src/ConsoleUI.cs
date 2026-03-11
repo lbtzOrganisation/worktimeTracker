@@ -8,38 +8,37 @@ namespace src
 {
     public class ConsoleUI
     {
-        CurrentWorkDay workDay = new CurrentWorkDay();
-
-        public void StartUI()
+        public void StartUI(CurrentWorkDay workDay)
         {
             Console.WriteLine("Möchten Sie die Arbeit beginnen? y/n");
             if (Console.ReadKey().Key == ConsoleKey.Y)
             {
                 Console.Clear();
-                SetStartTime();
+                SetStartTime(workDay);
             }
             Console.WriteLine("Möchten Sie die Arbeit beenden? y/n");
             if (Console.ReadKey().Key == ConsoleKey.Y)
             {
-                SetEndTime();
+                Console.Clear();
+                SetEndTime(workDay);
             }
         }
 
-        public void SetStartTime()
+        public void SetStartTime(CurrentWorkDay workDay)
         {
             workDay.StartTime = TimeOnly.FromDateTime(DateTime.Now);
             Console.WriteLine($"Deine Arbeitszeit hat um: {workDay.StartTime} begonnen.");
 
         }
 
-        public void SetEndTime()
+        public void SetEndTime(CurrentWorkDay workDay)
         {
             workDay.EndTime = TimeOnly.FromDateTime(DateTime.Now);
             Console.WriteLine($"Deine Arbeitszeit endete um: {workDay.EndTime}.");
-            CalWorkDuration();
+            CalWorkDuration(workDay);
         }
 
-        public void CalWorkDuration()
+        public void CalWorkDuration(CurrentWorkDay workDay)
         {
             workDay.CalculateWorkDuration(workDay.StartTime, workDay.EndTime);
             Console.WriteLine($"Arbeitszeit beträgt: {workDay.WorkDuration}");

@@ -15,12 +15,13 @@ namespace src
 
         public TimeOnly StartTime { get; set; }
         public TimeOnly EndTime { get; set; }
-        public TimeSpan WorkDuration { get; set; }
+        public TimeSpan WorkDuration { get; private set; }
 
         public CurrentWorkDay()
         {
             _startTime = StartTime;
             _endTime = EndTime;
+            _workDuration = WorkDuration;
         }
 
         public TimeSpan CalculateWorkDuration(TimeOnly startTime, TimeOnly endTime)
